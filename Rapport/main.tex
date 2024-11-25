@@ -23,6 +23,29 @@
 }
 \section{CMOS inverter static characterization}
 {
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}
+			% PMOS transistor
+			\draw
+			(0,3) node[pmos, anchor=D] (P1) {}
+			(P1.S) -- ++(0,1) node[vcc] {$V_{DD}$}  % Vcc supply
+			(P1.G) -- ++(-1,0) node[anchor=east] {$V_{in}$}  % Vin connection
+			(P1.D) -- ++(0,-1) coordinate (mid);
+			
+			% NMOS transistor
+			\draw
+			(0,0) node[nmos, anchor=S] (N1) {}
+			(N1.G) -- ++(-1,0) node[anchor=east] {$V_{in}$}  % Vin connection
+			(N1.D) -- (mid) % Connect NMOS drain to PMOS drain
+			(N1.S) -- ++(0,-1) node[ground] {};  % Ground connection
+			
+			% Output
+			\draw (mid) -- ++(1,0) node[anchor=west] {$V_{out}$};
+		\end{circuitikz}
+	\end{figure}
+	
 	\subfile{sections/Q3.tex}
 	\subfile{sections/Q4.tex}
 	\subfile{sections/Q5.tex}

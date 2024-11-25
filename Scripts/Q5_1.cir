@@ -1,0 +1,11 @@
+.include cmosws.mod
+			
+Vdd 1 0 dc 3.3V
+Vin 2 0 dc 1.0V
+M1  1 2 4 1 MODP L=0.6U W=6.0U
+M2  1 2 4 1 MODP L=0.6U W=6.0U
+M3  4 2 5 0 MODN L=0.6U W=6.0U
+M4  5 2 0 0 MODN L=0.6U W=6.0U
+
+.dc Vin 0 3.3 50mV
+.end
