@@ -3,6 +3,38 @@
 \begin{document}
 	\subsection{NAND2 transfer function}
 	{
+	
+	\begin{figure}[H]
+		\centering
+		\begin{circuitikz}
+			% PMOS Transistors (Pull-up Network)
+			\node[pmos, anchor=D] (P1) at (0,0) {};
+			\node[pmos, anchor=D] (P2) at (2,0) {};
+			
+			% NMOS Transistors (Pull-down Network)
+			\node[nmos, anchor=D] (N1) at (1,-0.5) {};
+			\node[nmos, anchor=D] (N2) at (1,-1.5) {};
+			
+			% Output Line
+			\draw (P1.D) -- (P2.D) -- (3,0) node[right]{$V_{out}$};
+			
+			% PMOS Connections
+			\draw (P1.S) -- ++(0,0.5) node[above]{$V_{DD}$}; % P1 drain to VDD
+			\draw (P2.S) -- ++(0,0.5) node[above]{$V_{DD}$}; % P2 drain to VDD
+			
+			% NMOS Connections
+			\draw (N2.S) -- ++(0,-0.5) node[ground, below]{};     % N1 source to GND
+			\draw (N1.S) -- (N2.D);                          % N1 drain to N2 source
+			\draw (N1.D) -- (1,0);                           % N2 drain to output
+			
+			% Input Connections
+			\draw (P1.G) -- ++(-0.4,0) node[left]{$A$};        % A to P1 gate
+			\draw (N1.G) -- ++(-0.4,0) node[left]{$A$};        % A to N1 gate
+			\draw (P2.G) -- ++(-0.4,0) node[left]{$B$};        % B to P2 gate
+			\draw (N2.G) -- ++(-0.4,0) node[left]{$B$};        % B to N2 gate
+		\end{circuitikz}
+	\end{figure}
+		
 	\begin{tcolorbox}[colback=gray!5!white,colframe=gray!75!black]
 		Plot the static transfer function of the NAND2 gate in the following cases:
 		\begin{itemize}
